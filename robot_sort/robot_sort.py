@@ -96,6 +96,48 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        #So, what I need it to do is first to ditch the None it begins the sorting process holding, either at the left end or the right end.  
+        # It is easier to do this at the left end of the list, as we're always going to start there.
+        self.swap_item()
+        self.set_light_on()
+
+            # This is so that the while loop will not trigger on a one item list.
+        #This is where things start to get crazy, and I start to check the values of different items.
+        while self.light_is_on() == True:
+            if self.compare_item() == 1:
+                if self.can_move_right() == True:
+                    self.move_right()
+                    self.swap_item()
+                elif self.can_move_right() == False:
+                    self.swap_item()
+            elif self.compare_item() == -1:
+                if self.can_move_left() == True:
+                    self.move_left()
+                    self.swap_item()
+                elif self.can_move_left() == False:
+                    self.swap_item()
+            elif self.compare_item() == 0:
+                if self.can_move_right() == True:
+                    self.move_right()
+                    self.swap_item()
+                elif self.can_move_right() == False:
+                    self.move_left()
+                    self.swap_item()
+            elif self.compare_item() == None:
+                if self.can_move_right() == True:
+                    self.move_right()
+                    self.swap_item()
+                elif self.can_move_right() == False:
+                    self.set_light_off()
+
+
+            # This loop almost works, but it does not sort the first index, and leaves the last index as None.
+            # I am uncertain how to fix this issue without directly breaking the rules of the project, 
+            # as it would require me to check if what I am holding is the None or not, for the last case as well as first case.
+
+
+
+
         
 
 
