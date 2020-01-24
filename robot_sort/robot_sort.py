@@ -104,6 +104,7 @@ class SortingRobot:
             # This is so that the while loop will not trigger on a one item list.
         #This is where things start to get crazy, and I start to check the values of different items.
         while self.light_is_on() == True:
+            print(self._position, self._item)
             if self.compare_item() == 1:
                 if self.can_move_right() == True:
                     self.move_right()
@@ -124,16 +125,19 @@ class SortingRobot:
                     self.move_left()
                     self.swap_item()
             elif self.compare_item() == None:
+                if self.can_move_left() == False:
+                    self.move_right()
                 if self.can_move_right() == True:
                     self.move_right()
                     self.swap_item()
                 elif self.can_move_right() == False:
+                    self.swap_item()
                     self.set_light_off()
 
+                
 
-            # This loop almost works, but it does not sort the first index, and leaves the last index as None.
-            # I am uncertain how to fix this issue without directly breaking the rules of the project, 
-            # as it would require me to check if what I am holding is the None or not, for the last case as well as first case.
+
+            # I fixed the issue with None at the end of the index, and have slightly moved 15 from it's place at the first index.
 
 
 
@@ -152,7 +156,6 @@ if __name__ == "__main__":
     # with `python robot_sort.py`
 
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
-
     robot = SortingRobot(l)
 
     robot.sort()
