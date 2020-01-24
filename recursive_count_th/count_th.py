@@ -29,7 +29,4 @@ def count_th(word):
         what = ""
         new_word = what.join(letters)
         count_th(new_word)
-
     return th_count
-
-print(count_th(""))
